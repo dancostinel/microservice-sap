@@ -1,0 +1,24 @@
+old_sound_rabbit_mq:
+    connections:
+        default:
+            url: '%env(RABBITMQ_URL)%'
+    producers:
+        test-producer:
+            connection: default
+            exchange_options: { name: 'testing-exchange', type: direct }
+            class: App\RabbitMQ\Producer\TestProducer
+#        # use 'old_sound_rabbit_mq.task_producer' service to send data.
+#        task:
+#            connection:       default
+#            exchange_options: { name: 'task', type: direct }
+    consumers:
+        test:
+            connection: default
+            exchange_options: { name: 'testing-exchange', type: direct }
+            queue_options: { name: 'testing-queue' }
+            callback: App\RabbitMQ\Consumer\TestConsumer
+#        task:
+#            connection:       default
+#            exchange_options: { name: 'task', type: direct }
+#            queue_options:    { name: 'task'}
+#            callback:         App\Consumer\TaskConsumer

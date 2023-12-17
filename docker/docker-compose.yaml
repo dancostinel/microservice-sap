@@ -48,6 +48,15 @@ services:
             - ./phpmyadmin/:/var/www/microservice-sap/docker/phpmyadmin/
         networks:
             - microservice-sap-network
+    microservice-bsap-rabbitmq-service:
+        image: rabbitmq:3-management-alpine
+        container_name: microservice-sap-rabbitmq-container
+        ports: [ '5673:5672', '15673:15672' ]
+        volumes:
+            - ./docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+            - ./docker-conf/rabbitmq/log/:/var/log/rabbitmq
+        networks:
+            - microservice-sap-network
 networks:
     microservice-sap-network:
         driver: bridge

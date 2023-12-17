@@ -8,7 +8,9 @@ RUN apt-get update && apt-get install apt-file -y && apt-file update && apt-get 
         zip \
         intl \
         mysqli \
-        pdo pdo_mysql
+        pdo pdo_mysql \
+        pcntl \
+        sockets
 
 RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
 WORKDIR /var/www/microservice-sap/
