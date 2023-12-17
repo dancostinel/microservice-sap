@@ -2,6 +2,8 @@ old_sound_rabbit_mq:
     connections:
         default:
             url: '%env(RABBITMQ_URL)%'
+        br:
+            url: '%env(RABBITMQ_URL_BR)%'
     producers:
         test-producer:
             connection: default
@@ -17,6 +19,11 @@ old_sound_rabbit_mq:
             exchange_options: { name: 'testing-exchange', type: direct }
             queue_options: { name: 'testing-queue' }
             callback: App\RabbitMQ\Consumer\TestConsumer
+        test_br:
+            connection: br
+            exchange_options: { name: 'testing-sap-exchange', type: direct }
+            queue_options: { name: 'testing-sap-queue' }
+            callback: App\RabbitMQ\Consumer\TestBrConsumer
 #        task:
 #            connection:       default
 #            exchange_options: { name: 'task', type: direct }
