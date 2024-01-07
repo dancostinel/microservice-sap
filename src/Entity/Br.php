@@ -44,6 +44,9 @@ class Br
     #[ORM\Column]
     private ?float $calculatedValue = null;
 
+    #[ORM\Column]
+    private ?bool $isActive = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -165,6 +168,18 @@ class Br
     public function setCalculatedValue(float $calculatedValue): static
     {
         $this->calculatedValue = $calculatedValue;
+
+        return $this;
+    }
+
+    public function isIsActive(): ?bool
+    {
+        return $this->isActive;
+    }
+
+    public function setIsActive(bool $isActive): static
+    {
+        $this->isActive = $isActive;
 
         return $this;
     }
