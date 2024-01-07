@@ -41,6 +41,9 @@ class Bsm
     #[ORM\Column]
     private ?int $supplierId = null;
 
+    #[ORM\Column]
+    private ?float $calculatedValue = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -150,6 +153,18 @@ class Bsm
     public function setSupplierId(int $supplierId): static
     {
         $this->supplierId = $supplierId;
+
+        return $this;
+    }
+
+    public function getCalculatedValue(): ?float
+    {
+        return $this->calculatedValue;
+    }
+
+    public function setCalculatedValue(float $calculatedValue): static
+    {
+        $this->calculatedValue = $calculatedValue;
 
         return $this;
     }
