@@ -44,8 +44,8 @@ class Br
     #[ORM\Column]
     private ?float $calculatedValue = null;
 
-    #[ORM\Column]
-    private ?bool $isActive = null;
+    #[ORM\Column(options: ['default' => 0])]
+    private bool $isActive = false;
 
     public function getId(): ?int
     {
