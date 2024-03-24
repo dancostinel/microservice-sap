@@ -23,7 +23,7 @@ services:
             - ./../vendor:/var/www/microservice-sap/vendor
         networks:
             - microservice-sap-network
-            - microservice-app-network
+            #- microservice-app-network
     microservice-sap-mysql-service:
         image: mysql
         container_name: microservice-sap-mysql-container
@@ -54,14 +54,14 @@ services:
         container_name: microservice-sap-rabbitmq-container
         ports: [ '5673:5672', '15673:15672' ]
         volumes:
-            - ./docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+            - ./docker-conf/rabbitmq/data/:/var/lib/rabbitmq/mnesia
             - ./docker-conf/rabbitmq/log/:/var/log/rabbitmq
         networks:
             - microservice-sap-network
-            - microservice-app-network
+            #- microservice-app-network
 networks:
     microservice-sap-network:
         driver: bridge
-    microservice-app-network:
-        driver: bridge
-        external: true
+    #microservice-app-network: #FIRST THIS NETWORK MUST BE CREATED WITH COMMAND: $ docker network create -d bridge microservice-app-network    THEN UNCOMMENT THESE COMMENTS RELATED TO THIS NETWORK
+    #    driver: bridge
+    #    external: true
