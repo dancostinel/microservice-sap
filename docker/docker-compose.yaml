@@ -23,11 +23,11 @@ services:
             - ./../vendor:/var/www/microservice-sap/vendor
         networks:
             - microservice-sap-network
-            #- microservice-app-network
+            - microservice-app-network
     microservice-sap-mysql-service:
         image: mysql
         container_name: microservice-sap-mysql-container
-        command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci', '--authentication_policy=mysql_native_password']
+        command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci', '--authentication_policy=caching_sha2_password']
         environment:
             MYSQL_ROOT_PASSWORD: root
         ports: ['3106:3306']
@@ -58,10 +58,10 @@ services:
             - ./docker-conf/rabbitmq/log/:/var/log/rabbitmq
         networks:
             - microservice-sap-network
-            #- microservice-app-network
+            - microservice-app-network
 networks:
     microservice-sap-network:
         driver: bridge
-    #microservice-app-network: #FIRST THIS NETWORK MUST BE CREATED WITH COMMAND: $ docker network create -d bridge microservice-app-network    THEN UNCOMMENT THESE COMMENTS RELATED TO THIS NETWORK
-    #    driver: bridge
-    #    external: true
+    microservice-app-network: #FIRST THIS NETWORK MUST BE CREATED WITH COMMAND: $ docker network create -d bridge microservice-app-network    THEN UNCOMMENT THESE COMMENTS RELATED TO THIS NETWORK
+        driver: bridge
+        external: true
